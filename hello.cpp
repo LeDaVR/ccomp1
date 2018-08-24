@@ -3,5 +3,7 @@
 using namespace std;
 
 int main() {
-	cout << "hello,Leonardo" << endl;
+	int a =6;
+	int b =5;
+	cout << a+b << endl;
 } 
