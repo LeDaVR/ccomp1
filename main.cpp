@@ -2,11 +2,6 @@
 
 using namespace std;
 
-int main()
-{
-int a=4294967295;
-int b=a+1;
-    cout << b << endl;
-  b=b+1;
-  cout<<b<<endl;
+int main(){
+cout << static_cast <char('5');
 }
