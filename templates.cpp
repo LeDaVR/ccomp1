@@ -11,6 +11,12 @@ class Point{
 			this->x=x;
 			this->y=y;
 		}
+		void setX(P a){
+			x=a;
+		}
+		void setY(P b){
+			y=b;
+		}
 		
 };
 
@@ -72,6 +78,7 @@ class Array{
 			for(int i=0;i<size;i++)
 				cout<<arr[i]<<" ";
 		}
+
 		~Array(){
 			delete[] arr;
 		}
@@ -83,8 +90,18 @@ ostream& operator<<(ostream &output,const Point<T> &o){
 	return output;
 }
 
+template<class T>
+Point<T> operator+(const Point<T>& b,const Point<T>& c){
+	Point<T> temp;
+	temp.setX(b.x+c.x);
+	temp.setY(b.y+c.y);
+	return temp;
+}
+
 
 int main(){
+	Point<int> num(1,3);
+	Point<int> num2(2,4);
 	Point<string> p1("1","2");
 	Point<string> p2("probando","probando");
 	Point<string> p3[]={p1,p2};
@@ -98,4 +115,7 @@ int main(){
 	array.remove(1);
 	cout<<endl;
 	array.print();
+	cout<<endl;
+	cout<<p1+p2<<endl;
+	cout<<num+num2<<endl;
 }
