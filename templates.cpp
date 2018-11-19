@@ -51,7 +51,7 @@ class Array{
 			arr=new Point<T>[a.size];
 			size=a.size;
 			for(int i=0;i<size;i++)
-				arr=a.arr[i];	
+				arr[i]=a.arr[i];	
 		}
 		void clear(){
 			resize(0);
