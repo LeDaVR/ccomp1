@@ -1,34 +1,13 @@
 #include <iostream>
 using namespace std;
 
-template <typename P>
-class Point{
-	public:
-		P x,y;
-		Point(){
-		}
-		Point(P x,P y){
-			this->x=x;
-			this->y=y;
-		}
-		void setX(P a){
-			x=a;
-		}
-		void setY(P b){
-			y=b;
-		}
-		
-};
-
-
-
 template<class T>
 class Array{
 	private:
 		int size;
-		Point<T> *arr;
+		T *arr;
 		void resize(int newsize){
-			Point<T> *temp=new Point<T>[newsize];
+			T *temp=new T[newsize];
 			int minsize = (newsize>size)?size:newsize;
 			for(int i=0;i<minsize;i++)
 				temp[i]=arr[i];
@@ -39,16 +18,16 @@ class Array{
 	public:
 		Array(){
 			size=0;
-			arr=new Point<T>[size];
+			arr=new T[size];
 		}
-		Array(Point<T> b[],int size){
+		Array(T b[],int size){
 			this->size=size;
-			arr=new Point<T>[size];
+			arr=new T[size];
 			for(int i=0;i<size;i++)
 				arr[i]=b[i];
 		}
 		Array(Array& a){
-			arr=new Point<T>[a.size];
+			arr=new T[a.size];
 			size=a.size;
 			for(int i=0;i<size;i++)
 				arr[i]=a.arr[i];	
@@ -56,11 +35,11 @@ class Array{
 		void clear(){
 			resize(0);
 		}
-		void push_back(const Point<T> &p){
+		void push_back(T p){
 			resize(size+1);
 			arr[size-1]=p;
 		}
-		void insert(const int pos, const Point<T> &p){
+		void insert(const int pos, const T p){
 			resize(size+1);
 			for(int i=size-2;i>pos;i--)
 				arr[i]=arr[i-1];
@@ -72,50 +51,49 @@ class Array{
 			resize(size-1);
 		}
 		int getSize(){
-			return size;
+			return this->size;
 		}
-		void print(){
-			for(int i=0;i<size;i++)
-				cout<<arr[i]<<" ";
-		}
-
 		~Array(){
 			delete[] arr;
+		}
+		T getarr(int x){
+			return arr[x];
 		}
 };
 
 template<class T>
-ostream& operator<<(ostream &output,const Point<T> &o){
-	output<<"("<<o.x<<","<<o.y<<")";
+ostream& operator<<(ostream &output,Array<T> &o){
+	for(int i=0;i<o.getSize();i++)
+		output<<o.getarr(i)<<" ";
 	return output;
 }
 
-template<class T>
-Point<T> operator+(const Point<T>& b,const Point<T>& c){
-	Point<T> temp;
-	temp.setX(b.x+c.x);
-	temp.setY(b.y+c.y);
+Array<int> operator+(Array<int>& b,Array<int>& c){
+	Array<int> temp;
+	int minsize=(b.getSize()>c.getSize()) ? c.getSize() : b.getSize();
+	for(int i=0;i<minsize;i++)
+		temp.push_back(b.getarr(i)+c.getarr(i));
 	return temp;
 }
-
-
+template<class T>
+Array<T> suma(Array<T> b,Array<T> c){
+	Array<T> temp;
+	int minsize=(b.getSize()>c.getSize()) ? c.getSize() : b.getSize();
+	for(int i=0;i<minsize;i++)
+		temp.push_back(b.getarr(i)+c.getarr(i));
+	return temp;
+}
 int main(){
-	Point<int> num(1,3);
-	Point<int> num2(2,4);
-	Point<string> p1("1","2");
-	Point<string> p2("probando","probando");
-	Point<string> p3[]={p1,p2};
-	Point<string> add("anadido","+");
-	
-	Array<string> array(p3,2);
-	array.print();
-	cout<<endl;
-	array.push_back(add);
-	array.print();
-	array.remove(1);
-	cout<<endl;
-	array.print();
-	cout<<endl;
-	cout<<p1+p2<<endl;
-	cout<<num+num2<<endl;
+	int arr[]={1,2,3};
+	int arr2[]={4,5,6};
+	Array<int> numbers(arr,3);
+	Array<int> numbers2(arr2,3);
+	Array<int> temp;
+	/*int minsize=(numbers.getSize()>numbers2.getSize()) ? numbers2.getSize() : numbers.getSize();
+	for(int i=0;i<minsize;i++)
+		temp.push_back(numbers.getarr(i)+numbers2.getarr(i));*/
+	cout<<numbers<<endl;
+	string arr3[]={"uno","dos","tres"};
+	Array<string> strings(arr3,3);
+	cout<<strings;
 }
