@@ -1,0 +1,19 @@
+#ifndef WIREFRAME_H
+#define WIREFRAME_H
+
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <vector>
+#include <map>
+
+class Terreno{
+	private:
+		int cubelen;
+		map<int,vector<int> > mapa;
+		int *vertice;
+		int *indices;
+	public:
+		Terreno(int);
+};
+
+#endif
