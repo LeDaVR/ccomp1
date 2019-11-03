@@ -29,7 +29,7 @@ public class Application
     
     public static void main(String[] args)
     {
-        String jdbcURL = "jdbc:mysql://localhost:3306/academicSystemDB";
+        String jdbcURL = "jdbc:mysql://localhost:3306/academicSystemBD";
         String jdbcUsername = "root";
         String jdbcPassword = "root";
         
